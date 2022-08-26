@@ -64,7 +64,6 @@ function afterLoad() {
     fetch(`http://localhost:3000/monsters`)
         .then(resp => resp.json())
         .then(obj => {
-            console.log(obj)
             pages = Math.ceil(obj.length / 50);
         })
     fetcher(pageNo);
@@ -72,6 +71,15 @@ function afterLoad() {
         if (pages >= pageNo) {
             fetcher(pageNo)
             ++pageNo;
+        }
+        else {
+            alert("End of monster list");
+        }
+    })
+    back.addEventListener("click", () => {
+        if (pageNo > 1) {
+            fetcher(pageNo)
+            --pageNo;
         }
         else {
             alert("End of monster list");
